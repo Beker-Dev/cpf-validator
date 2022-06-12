@@ -1,20 +1,16 @@
-import PySimpleGUI as sg
 from cpf_validator import search_cpf
+from fastapi import FastAPI
 
-sg.theme('DarkAmber')   # Add a touch of color
-# All the stuff inside your window.
-layout = [  [sg.Text('Search CPF (Only Numbers)'), sg.InputText()],
-            [sg.Button('Search'), sg.Button('Exit')] ]
+app = FastAPI()
 
-# Create the Window
-window = sg.Window('CPF VALIDATOR', layout)
-# Event Loop to process "events" and get the "values" of the inputs
-while True:
-    event, values = window.read()
-    cpf_output = search_cpf(values[0])
 
-    if event == sg.WIN_CLOSED or event == 'Exit': # if user closes window or clicks cancel
-        break
-    print(f'({values[0]}) =====> {cpf_output}')
+@app.get('/')
+def main():
+    return {'message': 'call this endpoint -> (/validate-cpf/<YOUR_CPF>) with GET method'}
 
-window.close()
+
+@app.get('/validate-cpf/{cpf}')
+def validate_cpf(cpf: str):
+    result = search_cpf(cpf)
+    return {'status': 200, 'cpf': cpf, 'message': result, 'github': 'https://github.com/Beker-Dev'}
+

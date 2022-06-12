@@ -4,13 +4,12 @@ def search_cpf(cpf_now):
     try:
         cpf_try_convert = int(cpf_now)
     except:
-        return 'MUST BE ONLY NUMBERS'
+        return 'INVALID CPF'
 
     if len(cpf_now) == 11:
         pass
     else:
-        return 'MUST HAVE A LENGTH OF [11]'
-
+        return 'IT MUST HAVE 11 DIGITS'
 
     for i in range(2):
         # settings
@@ -20,7 +19,6 @@ def search_cpf(cpf_now):
         else:
             max_index = 11
             cpf_verification = new_cpf
-
 
         n = max_index
         cpf_number_sum = 0
@@ -36,6 +34,6 @@ def search_cpf(cpf_now):
             new_cpf = cpf_verification + str(cpf_equation)
 
     if cpf_now == new_cpf:
-        return 'THIS IS A VALID CPF'
+        return 'VALID CPF'
     else:
-        return 'THIS IS AN INVALID CPF'
+        return 'INVALID CPF'
