@@ -32,8 +32,10 @@ def search_cpf(cpf_now):
             new_cpf = cpf_verification + '0'
         else:
             new_cpf = cpf_verification + str(cpf_equation)
+            
+    sequence = new_cpf == new_cpf[0] * len(new_cpf)
 
-    if cpf_now == new_cpf:
+    if cpf_now == new_cpf an not sequence:
         return 'VALID CPF'
     else:
         return 'INVALID CPF'
