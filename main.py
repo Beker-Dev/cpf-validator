@@ -12,5 +12,6 @@ def main():
 @app.get('/validate-cpf/{cpf}')
 def validate_cpf(cpf: str):
     result = search_cpf(cpf)
-    return {'status': 200, 'cpf': cpf, 'message': result, 'github': 'https://github.com/Beker-Dev'}
+    message = 'VALID CPF' if result else 'INVALID CPF'
+    return {'status': 200, 'cpf': cpf, 'is_valid': result, 'message': message, 'github': 'https://github.com/Beker-Dev'}
 
