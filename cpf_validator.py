@@ -4,12 +4,12 @@ def search_cpf(cpf_now):
     try:
         cpf_try_convert = int(cpf_now)
     except:
-        return 'INVALID CPF'
+        return False
 
     if len(cpf_now) == 11:
         pass
     else:
-        return 'IT MUST HAVE 11 DIGITS'
+        return False
 
     for i in range(2):
         # settings
